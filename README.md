@@ -3,7 +3,7 @@
 **Project Name** - ROSbot Motion Planning Simulation using LiDAR 
 
 **Video** -
-[<p align="center"><img src="https://user-images.githubusercontent.com/25856691/104540371-54029e80-55ed-11eb-9cef-392450b6ef32.png" width="600" height="500"></p>](https://user-images.githubusercontent.com/25856691/104540187-f706e880-55ec-11eb-9560-a6bb6925a064.mp4)
+[<p align="center"><img src="https://user-images.githubusercontent.com/25856691/104540371-54029e80-55ed-11eb-9cef-392450b6ef32.png" width="600" height="400"></p>](https://user-images.githubusercontent.com/25856691/104540187-f706e880-55ec-11eb-9560-a6bb6925a064.mp4)
 
 **Description** -
 1. Created C++ node in ROS for ROSbot to exit the path from Costa Coffee Simulation.

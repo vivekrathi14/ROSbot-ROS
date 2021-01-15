@@ -23,10 +23,12 @@ RosbotClass::RosbotClass(){
 
 // define all methods
 
+// laser callback method
 void RosbotClass::laser_callback(const sensor_msgs::LaserScan::ConstPtr &laser_msg){
 	laser_range = laser_msg->ranges;
 }
 
+// odom callback method
 void RosbotClass::odom_callback(const nav_msgs::Odometry::ConstPtr &odom_msg){
 	x_pos = odom_msg->pose.pose.position.x;
 	y_pos = odom_msg->pose.pose.position.y;
@@ -34,7 +36,7 @@ void RosbotClass::odom_callback(const nav_msgs::Odometry::ConstPtr &odom_msg){
 	ROS_INFO_STREAM("Odometry: x=" << x_pos << " y=" << y_pos << " z=" << z_pos);
 }
 
-
+// moves robot for 2 seconds
 void RosbotClass::move()
 {
 	ros::Rate rate(10); //rate of publishing (Hz)
@@ -52,6 +54,7 @@ void RosbotClass::move()
 	vel_pub.publish(vel_msg);
 }
 
+// moves robot forward for given seconds
 void RosbotClass::move_forward(int seconds)
 {
 	ros::Rate rate(10); //rate of publishing (Hz)
@@ -70,6 +73,7 @@ void RosbotClass::move_forward(int seconds)
 	vel_pub.publish(vel_msg);
 }
 
+//moves robot backwards for given seconds
 void RosbotClass::move_backward(int seconds)
 {
 	ros::Rate rate(10); //rate of publishing (Hz)
@@ -88,6 +92,7 @@ void RosbotClass::move_backward(int seconds)
 	vel_pub.publish(vel_msg);
 }
 
+// turns robot either clockwise and counterclockwise
 void RosbotClass::turn(std::string direction,int seconds){
 	ros::Rate rate(10); //rate of publishing (Hz)
 	ros::Time start_time = ros::Time::now();
@@ -113,6 +118,7 @@ void RosbotClass::turn(std::string direction,int seconds){
 	vel_pub.publish(vel_msg);
 }
 
+// stop the robot
 void RosbotClass::stop_moving(){
 	ROS_INFO_STREAM("Stopping robot...");
 	vel_msg.linear.x = 0.0;
@@ -120,6 +126,7 @@ void RosbotClass::stop_moving(){
 	vel_pub.publish(vel_msg);
 }
 
+// get robot position
 float RosbotClass::get_position(int coord){
 	if (coord == 1) return this->x_pos;
 	else if (coord == 2) return this->y_pos;
@@ -127,20 +134,24 @@ float RosbotClass::get_position(int coord){
 	return 0;
 }
 
+// get system time in seconds
 double RosbotClass::get_time(){
 	double sec = ros::Time::now().toSec();
 	return sec;
 }
 
+// get laser value at particular index
 float RosbotClass::get_laser(int index){
 	return this->laser_range[index];
 }
 
+// get entire laser array
 float* RosbotClass::get_laser_full(){
 	float *laser_pointer = laser_range.data();
 	return laser_pointer;
 }
 
+// get entire position as list
 std::list<float> RosbotClass::get_position_full() {
   std::list<float> coordinates({this->x_pos, this->y_pos, this->z_pos});
   return coordinates;

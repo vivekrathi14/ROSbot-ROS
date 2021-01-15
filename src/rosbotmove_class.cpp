@@ -1,6 +1,8 @@
 #include "rosbot/rosbotmove_class.h"
 
 // define methods
+
+// get robot to the exit door
 void RosbotMove::get_exit(){
 	rosbot.move_forward(1); // move forward for 1 second
 	while (rosbot.get_laser(0) > 1.75){ // move forward untill you reach close to the wall
@@ -35,6 +37,7 @@ void RosbotMove::get_exit(){
   	ROS_INFO_STREAM("Success!!!");
 }
 
+// calculate distance
 float RosbotMove::calc_distance(float x0, float y0, float x1, float y1) {
   return std::sqrt(std::pow((x0 - x1), 2) + std::pow((x0 - x1), 2));
 }
